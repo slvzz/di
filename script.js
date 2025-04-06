@@ -55,22 +55,94 @@ addFieldBtn.addEventListener("click", () => {
     alert("Digite um nome para o campo.");
     return;
   }
-
   const fieldWrapper = document.createElement("div");
-  fieldWrapper.className = "mb-3";
+  // Adiciona classes ao wrapper
+  fieldWrapper.className = "mb-3 position-relative"; // Adicionamos position-relative para referência do absolute
+  
+  const botaoDeEditarLabel = document.createElement("button");
+  // Configurando o botão de editar
+  botaoDeEditarLabel.className = "btn btn-sm btn-outline-primary me-1";
+  botaoDeEditarLabel.type = "button";
+  botaoDeEditarLabel.style.position = "absolute";
+  botaoDeEditarLabel.style.right = "40px"; // Posição à direita
+  botaoDeEditarLabel.style.top = "0";
+  
+  const botaoDeDeletar = document.createElement("button");
+  // Configurando o botão de deletar
+  botaoDeDeletar.className = "btn btn-sm btn-outline-danger";
+  botaoDeEditarLabel.type = "button";
+  botaoDeDeletar.style.position = "absolute";
+  botaoDeDeletar.style.right = "0";
+  botaoDeDeletar.style.top = "0";
 
-  const label = document.createElement("label");
-  label.textContent = labelText;
-  label.className = "form-label";
+
+  botaoDeDeletar.addEventListener("click", (event)=>{
+    event.preventDefault()
+    event.stopPropagation()
+    event.target.closest("div").remove()
+  })
+
+  botaoDeEditarLabel.addEventListener("click", (event)=>{
+    event.preventDefault()
+    event.stopPropagation()
+
+    const closestLabel= event.target.parentElement.querySelector("label")
+
+    closestLabel.style.display = "none"
+
+
+    const editarLabel = document.createElement("input")
+    editarLabel.type = "text"
+    editarLabel.value = closestLabel.textContent
+    editarLabel.className= "form-control"
+
+    closestLabel.parentElement.insertBefore(editarLabel, closestLabel)
+
+    editarLabel.focus()
+
+    editarLabel.addEventListener("keydown", (event)=>{
+      if(event.key === "Enter"){
+        closestLabel.textContent = editarLabel.value
+        editarLabel.remove()
+
+        closestLabel.style.display = ""
+
+
+      }
+    })
+
+  })
+  
+  // Adiciona os botões ao wrapper
+  fieldWrapper.appendChild(botaoDeEditarLabel);
+  fieldWrapper.appendChild(botaoDeDeletar);
+
+  const label = document.createElement("label"); // <label> </label>
+  label.textContent = labelText; // <label> Nome: </label>
+  label.className = "form-label"; // <label class= "form-label"> Nome: </label>
 
   fieldWrapper.appendChild(label);
 
+
   if (fieldType === "text" || fieldType === "email" || fieldType === "date") {
-    const input = document.createElement("input");
-    input.type = fieldType;
-    input.className = "form-control";
-    // input.disabled = true; <- Removido!
+    const input = document.createElement("input"); // <input></input>
+    input.type = fieldType; // <input type="text"></input>
+    input.className = "form-control"; // <input type="text" class="form-control"></input>
     fieldWrapper.appendChild(input);
+
+      /*
+      <div class="mb-3">
+          <label class= "form-label"> Nome: </label>
+          <input type="text" class="form-control"></input>
+      </div>
+  */
+
+      input.addEventListener("keydown", (e)=>{
+        if(e.key === "Enter"){
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      })
 
   } else if (fieldType === "radio") {
     if (!optionsText) {
@@ -79,6 +151,8 @@ addFieldBtn.addEventListener("click", () => {
     }
 
     const options = optionsText.split(",").map(opt => opt.trim());
+
+ 
     options.forEach(opt => {
       const radioDiv = document.createElement("div");
       radioDiv.className = "form-check";
@@ -88,6 +162,13 @@ addFieldBtn.addEventListener("click", () => {
       radioInput.name = labelText;
       radioInput.className = "form-check-input";
       // radioInput.disabled = true; <- Removido!
+
+      radioInput.addEventListener("keydown", (e)=>{
+        if(e.key === "Enter"){
+          e.preventDefault()
+          e.stopPropagation()
+        }
+      })
 
       const radioLabel = document.createElement("label");
       radioLabel.className = "form-check-label";
@@ -125,4 +206,6 @@ addFieldBtn.addEventListener("click", () => {
   fieldTypeSelect.value = "text";
   fieldOptionsInput.value = "";
   optionInputsDiv.style.display = "none";
+
+
 });

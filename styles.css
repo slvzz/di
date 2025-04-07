@@ -8,7 +8,7 @@ body, html {
     flex-direction: column;
   }
   
-  /* Contêiner principal centralizado */
+  /* container principal */
   .editor-container {
     flex: 1;
     display: flex;
@@ -19,7 +19,7 @@ body, html {
     flex-wrap: wrap;
   }
   
-  /* Estilos dos blocos editor e visualização */
+  /* estilo dos blocos editor/visualizacao */
   #editor, #preview {
     width: 500px;
     max-width: 100%;
@@ -29,7 +29,7 @@ body, html {
     padding: 25px;
   }
   
-  /* Cabeçalho bonito */
+  /* estilo header */
   header {
     background: #0d6efd;
     color: white;
@@ -43,7 +43,7 @@ body, html {
     font-size: 28px;
   }
   
-  /* Títulos e subtítulos */
+  /* titulos e subtitulos */
   #editor h3,
   #editor h5 {
     color: #333;
@@ -54,7 +54,7 @@ body, html {
     color: #666 !important;
   }
   
-  /* Inputs e labels organizados */
+  /* inputs e labels organizados */
   .form-control-editor {
     margin-bottom: 16px;
   }
@@ -65,19 +65,19 @@ body, html {
     border: 1px solid #ccc;
   }
   
-  /* Opções de múltipla escolha (radio/select) */
+  /* (radio/select) */
   .option-input {
     display: none;
     margin-top: 10px;
   }
   
-  /* Botão de adicionar */
+  /* botao add */
   #addFieldBtn {
     width: 100%;
     font-weight: 600;
   }
   
-  /* Área do formulário gerado */
+  /* formulário gerado */
   #generatedForm {
     background: #f9f9f9;
     border: 2px solid #ccc;
@@ -93,7 +93,7 @@ body, html {
     color: #333;
   }
   
-  /* Rodapé fixo */
+  /* footer */
   footer {
     position: fixed;
     bottom: 0;

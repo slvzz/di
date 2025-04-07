@@ -57,14 +57,14 @@ addFieldBtn.addEventListener("click", () => {
   }
   const fieldWrapper = document.createElement("div");
   // Adiciona classes ao wrapper
-  fieldWrapper.className = "mb-3 position-relative"; // Adicionamos position-relative para referência do absolute
+  fieldWrapper.className = "mb-3 position-relative"; 
   
   const botaoDeEditarLabel = document.createElement("button");
   // Configurando o botão de editar
   botaoDeEditarLabel.className = "btn btn-sm btn-outline-primary me-1";
   botaoDeEditarLabel.type = "button";
   botaoDeEditarLabel.style.position = "absolute";
-  botaoDeEditarLabel.style.right = "40px"; // Posição à direita
+  botaoDeEditarLabel.style.right = "40px"; 
   botaoDeEditarLabel.style.top = "0";
   
   const botaoDeDeletar = document.createElement("button");
@@ -161,7 +161,7 @@ addFieldBtn.addEventListener("click", () => {
       radioInput.type = "radio";
       radioInput.name = labelText;
       radioInput.className = "form-check-input";
-      // radioInput.disabled = true; <- Removido!
+      
 
       radioInput.addEventListener("keydown", (e)=>{
         if(e.key === "Enter"){
@@ -187,7 +187,7 @@ addFieldBtn.addEventListener("click", () => {
 
     const select = document.createElement("select");
     select.className = "form-select";
-    // select.disabled = true; <- Removido!
+    
 
     const options = optionsText.split(",").map(opt => opt.trim());
     options.forEach(opt => {
